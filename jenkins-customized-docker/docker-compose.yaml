@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+ jenkins:
+   image: danielgomeza/jenkins-customized-docker:v2
+   privileged: true
+   user: root
+   ports:
+    - 8181:8080
+    - 50000:50000
+   container_name: jenkins-v2
+   volumes:
+    - $HOME/jenkins-volumes/jenkins-customized-docker-v2:/var/jenkins_home
+    - /var/run/docker.sock:/var/run/docker.sock
+ jenkins-2:
+   image: danielgomeza/jenkins-customized-docker:v2
+   privileged: true
+   user: root
+   ports:
+    - 8282:8080
+    - 52000:50000
+   container_name: jenkins-2-v2
+   volumes:
+    - $HOME/jenkins-volumes/jenkins-customized-docker-2-v2:/var/jenkins_home
+    - /var/run/docker.sock:/var/run/docker.sock
+ jenkins-old:
+   image: jenkins/jenkins:2.375.1
+   privileged: true
+   user: root
+   ports:
+    - 8383:8080
+    - 53000:50000
+   container_name: jenkins-old
+   volumes:
+    - $HOME/jenkins-volumes/jenkins-customized-docker-old:/var/jenkins_home
+    - /var/run/docker.sock:/var/run/docker.sock
